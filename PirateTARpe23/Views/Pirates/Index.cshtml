@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PirateTARpe23.Models.Pirates.PirateIndexViewModel>
+
+    @{ int rowNum = 1; }
+
+    <div class="h1">Your pirate:</div>
+    <form method="post">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+
+                    <th scope="col">Name</th>
+
+                    <th scope="col">Health</th>
+
+                    <th scope="col">Hunger</th>
+
+                    <th scope="col">Thirst</th>
+
+                    <th scope="col">Level</th>
+
+                    <th scope="col">XP</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var pirata in Model)
+            {
+                <tr>
+                    <td>@rowNum</td>
+
+                    <td>@pirata.Name</td>
+
+                    <td>@pirata.Health</td>
+
+                    <td>@pirata.HungerLevel</td>
+
+                    <td>@pirata.ThirstLevel</td>
+
+                    <td>@pirata.Level</td>
+
+                    <td>@pirata.XP</td>
+                </tr>
+                rowNum++;
+            }
+        </tbody>
+        </table>
+    </form>
