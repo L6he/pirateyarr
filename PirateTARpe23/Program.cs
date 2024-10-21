@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using PirateTARpe23.ApplicationServices.Services;
+using PirateTARpe23.Core.ServiceInterface;
 using PirateTARpe23.Data;
 
 namespace PirateTARpe23
@@ -11,6 +13,8 @@ namespace PirateTARpe23
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IPirateServices, PirateServices>();
+
             builder.Services.AddDbContext<PirateTARpe23Context>
                 (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

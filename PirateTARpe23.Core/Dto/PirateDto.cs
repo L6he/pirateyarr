@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,10 +36,10 @@ namespace PirateTARpe23.Core.Dto
         public double HungerLevel { get; set; }
         public double ThirstLevel { get; set; }
 
-        /*
-         public List<IFormFile> Files {get; set}
-        public IEnumerable<FileToDatabaseDto> Image { get; set; } = new List<FileToDatabaseDbo>();
-         */
+        
+        public List<IFormFile> Files { get; set; }
+        public IEnumerable<FileToDatabaseDto> Image { get; set; } = new List<FileToDatabaseDto>();
+         
         
     }
 }
