@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<PirateTARpe23.Models.Pirates.PirateIndexViewModel>
 
     @{ int rowNum = 1; }
+    <div>
+        <a asp-action="Create" asp-asp-controller="Pirates" class="btn btn-primary">Summon a pirate onto this earth</a>
+    </div>
 
     <div class="h1">Your pirate:</div>
     <form method="post">
@@ -24,26 +27,29 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach (var pirata in Model)
+            @if (Model.Any() != null)
             {
-                <tr>
-                    @*here too*@
-                    <td>@rowNum</td>
+                foreach (var pirata in Model)
+                {
+                    <tr>
+                        @*here too*@
+                        <td>@rowNum</td>
 
-                    <td>@pirata.Name</td>
+                        <td>@pirata.Name</td>
 
-                    <td>@pirata.Health</td>
+                        <td>@pirata.Health</td>
 
-                    <td>@pirata.HungerLevel</td>
+                        <td>@pirata.HungerLevel</td>
 
-                    <td>@pirata.ThirstLevel</td>
+                        <td>@pirata.ThirstLevel</td>
 
-                    <td>@pirata.Level</td>
+                        <td>@pirata.Level</td>
 
-                    <td>@pirata.XP</td>
-                </tr>
-                rowNum++;
+                        <td>@pirata.XP</td>
+                    </tr>
+                    rowNum++;
+                }
             }
-        </tbody>
+            </tbody>
         </table>
     </form>

@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace PirateTARpe23.ApplicationServices.Services
 {
-    public class PirateServices : IPirateServices
+    public class IPiratesServices : IPirateServices
     {
         private readonly PirateTARpe23Context _context;
         //private readonly IFileServices _fileServices;
 
-        public PirateServices(PirateTARpe23Context context /*, IFileServices fileServices*/)
+        public IPiratesServices(PirateTARpe23Context context /*, IFileServices fileServices*/)
         {
             _context = context;
             //_fileServices = fileServices

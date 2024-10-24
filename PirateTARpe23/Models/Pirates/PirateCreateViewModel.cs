@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace PirateTARpe23.Models.Pirates
+{
     public enum StatusEffect
     {
         Clear,
@@ -18,10 +15,9 @@ using System.Threading.Tasks;
     {
         Dagger, Scimitar, Cutlass
     }
-namespace PirateTARpe23.Models.Pirates
-{
 
-    public class PirateIndexViewModel
+
+    public class PirateCreateViewModel
     {
         public Guid ID { get; set; }
         public string? Name { get; set; }
@@ -34,5 +30,8 @@ namespace PirateTARpe23.Models.Pirates
         public string? Item { get; set; }
         public double HungerLevel { get; set; }
         public double ThirstLevel { get; set; }
+
+        public List<IFormFile> Files { get; set; }
+        public List<PirateImageViewModel> Image { get; set; } = new List<PirateImageViewModel>();
     }
 }
