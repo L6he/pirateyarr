@@ -6,12 +6,12 @@ using PirateTARpe23.Data;
 
 namespace PirateTARpe23.ApplicationServices.Services
 {
-    public class IFileServices : Core.ServiceInterface.IFileServices
+    public class FileServices : IFileServices
     {
         private readonly IHostEnvironment _webHost;
         private readonly PirateTARpe23Context _context;
 
-        public IFileServices
+        public FileServices
             (IHostEnvironment webHost,
              PirateTARpe23Context context)
         {

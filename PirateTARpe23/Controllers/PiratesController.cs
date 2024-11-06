@@ -49,7 +49,7 @@ namespace PirateTARpe23.Controllers
             PirateCreateViewModel vm = new();
             return View("Create", vm);
         }
-        /*
+        
         [HttpPost]
         public async Task<IActionResult> Create(PirateCreateViewModel vm)
         {
@@ -84,8 +84,9 @@ namespace PirateTARpe23.Controllers
 
             if (result != null)
             {
-                return RedirectToAction("Index", vm);
+                return RedirectToAction("Index");
             }
-        } */
+            return RedirectToAction("Index", vm);
+        } 
     }
 }

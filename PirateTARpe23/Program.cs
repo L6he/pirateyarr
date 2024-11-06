@@ -13,7 +13,8 @@ namespace PirateTARpe23
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<IPirateServices, IPiratesServices>();
+            builder.Services.AddScoped<IPirateServices, PiratesServices>();
+            builder.Services.AddScoped<IFileServices, FileServices>();
 
             builder.Services.AddDbContext<PirateTARpe23Context>
                 (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

@@ -1,4 +1,5 @@
 ﻿using PirateTARpe23.Core.Domain;
+using PirateTARpe23.Core.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace PirateTARpe23.Core.ServiceInterface
     public interface IPirateServices
     {
         Task<Pirate> DetailsAsync(Guid id);
+
+        Task<Pirate> Create(PirateDto dto);
     }
 }
