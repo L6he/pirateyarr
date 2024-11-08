@@ -33,6 +33,7 @@ namespace PirateTARpe23.ApplicationServices.Services
         {
             Pirate pirate = new();
             //set by saavis
+            pirate.Name = dto.Name;
             pirate.ID = Guid.NewGuid();
             pirate.Health = 200;
             pirate.XP = 0;
