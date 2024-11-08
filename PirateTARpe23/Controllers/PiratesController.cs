@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PirateTARpe23.Core.Domain;
 using PirateTARpe23.Core.Dto;
 using PirateTARpe23.Core.ServiceInterface;
@@ -11,9 +12,9 @@ namespace PirateTARpe23.Controllers
     public class PiratesController : Controller
     {
         private readonly PirateTARpe23Context _context;
-        private readonly IPirateServices _pirateServices;
+        private readonly IPiratesServices _pirateServices;
 
-        public PiratesController(PirateTARpe23Context context, IPirateServices pirateServices)
+        public PiratesController(PirateTARpe23Context context, IPiratesServices pirateServices)
         {
             _context = context;
             _pirateServices = pirateServices;
@@ -87,6 +88,41 @@ namespace PirateTARpe23.Controllers
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index", vm);
-        } 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id /*, Guid ref*/)
+        {
+            var pirate = await _pirateServices.DetailsAsync(id);
+
+            if (pirate == null) { return NotFound(); }
+
+            var images = await _context.FilesToDatabase
+                .Where(p => p.PirateID == id)
+                .Select(y => new PirateImageViewModel
+            {
+                PirateID = y.ID,
+                ImageID = y.ID,
+                ImageData = y.ImageData,
+                ImageTitle = y.ImageTitle,
+                Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+            }).ToArrayAsync();
+
+            var vm = new PirateDetailsViewModel();
+            vm.ID = pirate.ID;
+            vm.Name = pirate.Name;
+            vm.Health = pirate.Health;
+            vm.XP = pirate.XP;
+            vm.Level = pirate.Level;
+            vm.HungerLevel = pirate.HungerLevel;
+            vm.ThirstLevel = pirate.ThirstLevel;
+            vm.StatusEffect = (Models.Pirates.StatusEffect)pirate.StatusEffect;
+            vm.PrimaryWeapon = (Models.Pirates.PrimaryWeapon)pirate.PrimaryWeapon;
+            vm.SecondaryWeapon = (Models.Pirates.SecondaryWeapon)pirate.SecondaryWeapon;
+            vm.Item = pirate.Item;
+            vm.Image.AddRange(images);
+
+            return View(vm);
+        }
     }
 }

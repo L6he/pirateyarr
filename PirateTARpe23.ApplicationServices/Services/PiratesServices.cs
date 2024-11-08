@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PirateTARpe23.ApplicationServices.Services
 {
-    public class PiratesServices : IPirateServices
+    public class PiratesServices : IPiratesServices
     {
         private readonly PirateTARpe23Context _context;
         private readonly IFileServices _fileServices;

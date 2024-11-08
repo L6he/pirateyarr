@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PirateTARpe23.Core.ServiceInterface
 {
-    public interface IPirateServices
+    public interface IPiratesServices
     {
         Task<Pirate> DetailsAsync(Guid id);
 
