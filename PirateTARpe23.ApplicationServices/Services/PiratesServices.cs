@@ -48,13 +48,42 @@ namespace PirateTARpe23.ApplicationServices.Services
             pirate.SecondaryWeapon = (Core.Domain.SecondaryWeapon)dto.SecondaryWeapon;
             pirate.Item = dto.Item;
 
-            //files
+            //fairusu
             if (dto.Files != null)
             {
                 _fileServices.UploadFilesToDb(dto, pirate);
             }
 
             await _context.Pirates.AddAsync(pirate);
+            await _context.SaveChangesAsync();
+
+            return pirate;
+        }
+
+        public async Task<Pirate> Update(PirateDto dto)
+        {
+            Pirate pirate = new();
+            //set by saavis
+            pirate.Name = dto.Name;
+            pirate.ID = Guid.NewGuid();
+            pirate.Health = 200;
+            pirate.XP = 0;
+            pirate.Level = 0;
+            pirate.HungerLevel = 0;
+            pirate.ThirstLevel = 0;
+            pirate.StatusEffect = Core.Domain.StatusEffect.Clear;
+
+            //set by yuusa
+            pirate.PrimaryWeapon = (Core.Domain.PrimaryWeapon)dto.PrimaryWeapon;
+            pirate.SecondaryWeapon = (Core.Domain.SecondaryWeapon)dto.SecondaryWeapon;
+            pirate.Item = dto.Item;
+
+            //fairusu
+            if (dto.Files != null)
+            {
+                _fileServices.UploadFilesToDb(dto, pirate);
+            }
+            _context.Pirates.Update(pirate);
             await _context.SaveChangesAsync();
 
             return pirate;

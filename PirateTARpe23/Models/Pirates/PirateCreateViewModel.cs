@@ -19,7 +19,7 @@
 
     public class PirateCreateViewModel
     {
-        public Guid ID { get; set; }
+        public Guid? ID { get; set; }
         public string? Name { get; set; }
         public double Health { get; set; }
         public StatusEffect StatusEffect { get; set; }
