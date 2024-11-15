@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using PirateTARpe23.Core.Domain;
 using PirateTARpe23.Core.Dto;
 using PirateTARpe23.Core.ServiceInterface;
@@ -12,8 +13,10 @@ namespace PirateTARpe23.ApplicationServices.Services
         private readonly PirateTARpe23Context _context;
 
         public FileServices
-            (IHostEnvironment webHost,
-             PirateTARpe23Context context)
+            (
+                IHostEnvironment webHost,
+                PirateTARpe23Context context
+            )
         {
             _webHost = webHost;
             _context = context;
@@ -39,6 +42,20 @@ namespace PirateTARpe23.ApplicationServices.Services
                     }
                 }
             }
+        }
+
+        public async Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto dto)
+        {
+            var imageID = await _context.FilesToDatabase.FirstOrDefaultAsync(x => x.ID == dto.ID);
+            var filePath = _webHost.ContentRootPath + "\\multipleFileUpload\\" + imageID.ImageData;
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            _context.FilesToDatabase.Remove(imageID);
+            await _context.SaveChangesAsync();
+
+            return null;
         }
     }
 }

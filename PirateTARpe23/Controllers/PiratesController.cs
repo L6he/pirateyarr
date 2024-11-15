@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using PirateTARpe23.ApplicationServices.Services;
 using PirateTARpe23.Core.Domain;
 using PirateTARpe23.Core.Dto;
 using PirateTARpe23.Core.ServiceInterface;
@@ -15,11 +16,13 @@ namespace PirateTARpe23.Controllers
     {
         private readonly PirateTARpe23Context _context;
         private readonly IPiratesServices _piratesServices;
+        private readonly IFileServices _fileServices;
 
-        public PiratesController(PirateTARpe23Context context, IPiratesServices pirateServices)
+        public PiratesController(PirateTARpe23Context context, IPiratesServices pirateServices, IFileServices fileServices)
         {
             _context = context;
             _piratesServices = pirateServices;
+            _fileServices = fileServices;
         }
         [HttpGet]
         public IActionResult Index()
@@ -137,6 +140,7 @@ namespace PirateTARpe23.Controllers
         public async Task<IActionResult> Update(Guid id)
         {
             if (id == null) { return NotFound(); }
+
             var pirate = await _piratesServices.DetailsAsync(id);
 
             if (pirate == null) { return NotFound(); }
@@ -153,17 +157,29 @@ namespace PirateTARpe23.Controllers
                 }).ToArrayAsync();
 
             var vm = new PirateCreateViewModel();
+
             vm.ID = pirate.ID;
+
             vm.Name = pirate.Name;
+
             vm.Health = pirate.Health;
+
             vm.XP = pirate.XP;
+
             vm.Level = pirate.Level;
+
             vm.HungerLevel = pirate.HungerLevel;
+
             vm.ThirstLevel = pirate.ThirstLevel;
+
             vm.StatusEffect = (Models.Pirates.StatusEffect)pirate.StatusEffect;
+
             vm.PrimaryWeapon = (Models.Pirates.PrimaryWeapon)pirate.PrimaryWeapon;
+
             vm.SecondaryWeapon = (Models.Pirates.SecondaryWeapon)pirate.SecondaryWeapon;
+
             vm.Item = pirate.Item;
+
             vm.Image.AddRange(images);
 
             return View("Update", vm);
@@ -175,6 +191,7 @@ namespace PirateTARpe23.Controllers
             var dto = new PirateDto()
             {
                 ID = (Guid)vm.ID,
+
                 Name = vm.Name,
 
                 Health = 200,
@@ -200,15 +217,95 @@ namespace PirateTARpe23.Controllers
                 Image = vm.Image.Select(x => new FileToDatabaseDto
                 {
                     ID = x.ImageID,
+
                     ImageData = x.ImageData,
+
                     ImageTitle = x.ImageTitle,
+
                     PirateID = x.PirateID,
                 }
                 ).ToArray()
             };
             var result = await _piratesServices.Update(dto);
+
             if (result == null) { return RedirectToAction("Index"); }
             return RedirectToAction("Index", vm);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (id == null) { return NotFound(); }
+
+            var pirate = await _piratesServices.DetailsAsync(id);
+
+            if (pirate == null) {  NotFound(); }
+
+            var images = await _context.FilesToDatabase
+                                       .Where(x => x.PirateID == id)
+                                       .Select(y => new PirateImageViewModel
+                                       {
+                                           PirateID = y.ID,
+
+                                           ImageID = y.ID,
+
+                                           ImageData = y.ImageData,
+
+                                           ImageTitle = y.ImageTitle,
+                                           //😢😢😢😢😢😢😢😢😢😢😢😢😢😢
+                                           Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+                                       }).ToArrayAsync();
+
+            var vm = new PirateDeleteViewModel();
+
+            vm.ID = pirate.ID;
+
+            vm.Name = pirate.Name;
+
+            vm.Health = pirate.Health;
+
+            vm.XP = pirate.XP;
+
+            vm.Level = pirate.Level;
+
+            vm.HungerLevel = pirate.HungerLevel;
+
+            vm.ThirstLevel = pirate.ThirstLevel;
+
+            vm.StatusEffect = (Models.Pirates.StatusEffect)pirate.StatusEffect;
+
+            vm.PrimaryWeapon = (Models.Pirates.PrimaryWeapon)pirate.PrimaryWeapon;
+
+            vm.SecondaryWeapon = (Models.Pirates.SecondaryWeapon)pirate.SecondaryWeapon;
+
+            vm.Item = pirate.Item;
+
+            vm.Image.AddRange(images);
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmation(Guid id)
+        {
+            var pirateToDelete = await _piratesServices.Delete(id);
+
+            if (pirateToDelete == null) { return RedirectToAction("Index"); }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveImage(Guid id)
+        {
+            var dto = new FileToDatabaseDto()
+            {
+                ID = id
+            };
+
+            var image = await _fileServices.RemoveImageFromDatabase(dto);
+            if (image == null) { return RedirectToAction("Index"); }
+            return RedirectToAction("Index");
         }
     }
 }

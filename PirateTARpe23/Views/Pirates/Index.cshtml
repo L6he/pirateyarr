@@ -1,6 +1,11 @@
 ﻿@model IEnumerable<PirateTARpe23.Models.Pirates.PirateIndexViewModel>
 
-    @{ int rowNum = 1; }
+@{
+    int rowNum = 1;
+    int currentRow = 1;
+    int currentTile = 1;
+    int tilesInRow = 6;
+}
     <div>
         <a asp-action="Create" asp-asp-controller="Pirates" class="btn btn-primary">Summon a pirate</a>
     </div>
@@ -51,6 +56,10 @@
 
                         <td>
                             <a asp-action="Details" asp-controller="Pirates" asp-route-id="@pirata.ID" class="btn btn-info">Details</a>
+                            <br />
+                            <a asp-action="Update" asp-controller="Pirates" asp-route-id="@pirata.ID" class="btn btn-info">Configure</a>
+                            <br />
+                            <a asp-action="Delete" asp-controller="Pirates" asp-route-id="@pirata.ID" class="btn btn-info">Delete</a>
                         </td>
                     </tr>
                     rowNum++;

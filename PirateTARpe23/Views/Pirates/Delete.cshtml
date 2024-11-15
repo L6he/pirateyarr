@@ -1,0 +1,64 @@
+﻿@model PirateTARpe23.Models.Pirates.PirateDeleteViewModel
+
+<h1>@Html.DisplayFor(model => model.Name)</h1>
+
+<div>
+    <h4>Pie rate</h4>
+    <hr />
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="ID" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.ID)
+        </div>
+        <div class="form-group row">
+            <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        @foreach (var image in Model.Image)
+        {
+            <partial name="_Images" model="image"></partial>
+        }
+        <div class="form-group row">
+            <label asp-for="Health" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.Health)
+        </div>
+        <div class="form-group row">
+            <label asp-for="StatusEffect" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.StatusEffect)
+        </div>
+        <div class="form-group row">
+            <label asp-for="XP" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.XP)
+        </div>
+        <div class="form-group row">
+            <label asp-for="Level" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.Level)
+        </div>
+        <div class="form-group row">
+            <label asp-for="HungerLevel" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.HungerLevel)
+        </div>
+        <div class="form-group row">
+            <label asp-for="ThirstLevel" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.ThirstLevel)
+        </div>
+        <div class="form-group row">
+            <label asp-for="PrimaryWeapon" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.PrimaryWeapon)
+        </div>
+        <div class="form-group row">
+            <label asp-for="SecondaryWeapon" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.SecondaryWeapon)
+        </div>
+        <div class="form-group row">
+            <label asp-for="Item" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.Item)
+        </div>
+    </dl>
+
+    <form asp-action="DeleteConfirmation">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" asp-controller="Pirates" class="btn btn-secondary">Index</a>
+    </form>
+</div>

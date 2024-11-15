@@ -13,6 +13,9 @@ namespace PirateTARpe23.Core.ServiceInterface
         Task<Pirate> DetailsAsync(Guid id);
 
         Task<Pirate> Create(PirateDto dto);
+
         Task<Pirate> Update(PirateDto dto);
+
+        Task<Pirate> Delete(Guid id);
     }
 }

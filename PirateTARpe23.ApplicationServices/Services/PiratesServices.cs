@@ -88,5 +88,15 @@ namespace PirateTARpe23.ApplicationServices.Services
 
             return pirate;
         }
+
+        public async Task<Pirate> Delete(Guid id)
+        {
+            var result = await _context.Pirates
+                .FirstOrDefaultAsync(x => x.ID == id);
+            _context.Pirates.Remove(result);
+            await _context.SaveChangesAsync();
+
+            return result;
+        }
     }
 }
