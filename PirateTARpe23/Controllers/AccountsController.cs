@@ -4,6 +4,7 @@ using PirateTARpe23.Core.Domain;
 using PirateTARpe23.Core.Dto.AccountsDtos;
 using PirateTARpe23.Data;
 using PirateTARpe23.Models.Accounts;
+using System.Reflection.Metadata.Ecma335;
 
 namespace PirateTARpe23.Controllers
 {
@@ -56,6 +57,37 @@ namespace PirateTARpe23.Controllers
                 }
                 await _signInManager.RefreshSignInAsync(user);
                 return View("AddPasswordConfirmation");
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword (ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return RedirectToAction("Login");
+                }
+                var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View();
+                }
+                await _signInManager.RefreshSignInAsync(user);
+                return View("ChangePasswordConfirmation");
             }
             return View(model);
         }
