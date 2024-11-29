@@ -122,7 +122,9 @@ namespace PirateTARpe23.Controllers
             return View(model);
         }
 
-        
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public 
 
         [HttpGet]
         public IActionResult Register()
