@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using PirateTARpe23.Core.Domain;
 using System;
@@ -9,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace PirateTARpe23.Data
 {
-    public class PirateTARpe23Context : DbContext
+    public class PirateTARpe23Context : IdentityDbContext<ApplicationUser>
     {
         public PirateTARpe23Context(DbContextOptions<PirateTARpe23Context> options) : base(options) { }
         public DbSet<Pirate> Pirates { get; set; }
 
         public DbSet<FileToDatabase> FilesToDatabase { get; set; }
+
+        public DbSet<IdentityRole> IdentityRoles { get; set; }
     }
 }
