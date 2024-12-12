@@ -20,9 +20,11 @@ namespace PirateTARpe23.Controllers
 
         public AccountsController
             (
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
-            PirateTARpe23Context context
+                UserManager<ApplicationUser> userManager,
+
+                SignInManager<ApplicationUser> signInManager,
+
+                PirateTARpe23Context context
             )
         {
             _userManager = userManager;
@@ -193,6 +195,7 @@ namespace PirateTARpe23.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -205,7 +208,7 @@ namespace PirateTARpe23.Controllers
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
-
+                
                 if (result.Succeeded)
                 {
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);

@@ -10,5 +10,7 @@ namespace PirateTARpe23.Core.Domain
     public class ApplicationUser : IdentityUser
     {
         public string City { get; set; }
+
+        public Guid PlayerProfileID { get; set; } //nigga!!!!
     }
 }
