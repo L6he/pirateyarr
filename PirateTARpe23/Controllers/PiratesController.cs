@@ -352,8 +352,10 @@ namespace PirateTARpe23.Controllers
                 //}
                 //).ToArray()
             };
-            var result = await _storiesServices.Create(dto);
+            //var result = await _storiesServices.Create(dto);
 
+
+            string result = null; //for now
             if (result != null)
             {
                 return RedirectToAction("Index");
