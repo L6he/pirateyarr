@@ -7,6 +7,7 @@ using PirateTARpe23.Core.Dto;
 using PirateTARpe23.Core.ServiceInterface;
 using PirateTARpe23.Data;
 using PirateTARpe23.Models.Pirates;
+using PirateTARpe23.Models.Stories;
 using System.Security.Cryptography.Xml;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -24,6 +25,7 @@ namespace PirateTARpe23.Controllers
             _piratesServices = pirateServices;
             _fileServices = fileServices;
         }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -306,6 +308,57 @@ namespace PirateTARpe23.Controllers
             var image = await _fileServices.RemoveImageFromDatabase(dto);
             if (image == null) { return RedirectToAction("Index"); }
             return RedirectToAction("Index");
+        }
+
+        
+        [HttpPost, ActionName("CreatePirateOwnership")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateRandomPirateOwnership(PirateOwnershipFromStoryViewModel vm)
+        {
+            int rng = new Random().Next(1, _context.Pirates.Count());
+
+            var sourcePirate = _context.Pirates.OrderByDescending(x => x.Name).Take(rng);
+
+            var dto = new PirateOwnershipDto()
+            {
+                Name = vm.AddedPirate.Name,
+
+                Health = 200,
+
+                HungerLevel = 0,
+
+                ThirstLevel = 0,
+
+                Level = 0,
+
+                XP = 0,
+
+                StatusEffect = (Core.Dto.StatusEffect)vm.AddedPirate.StatusEffect,
+
+                PrimaryWeapon = (Core.Dto.PrimaryWeapon)vm.AddedPirate.PrimaryWeapon,
+
+                SecondaryWeapon = (Core.Dto.SecondaryWeapon)vm.AddedPirate.SecondaryWeapon,
+
+                Item = vm.AddedPirate.Item,
+
+                Files = vm.AddedPirate.Files,
+
+                //Image = vm.AddedPirate.Image.Select(x => new FileToDatabaseDto
+                //{
+                //    ID = x.ImageID,
+                //    ImageData = x.ImageData,
+                //    ImageTitle = x.ImageTitle,
+                //    PirateID = x.PirateID,
+                //}
+                //).ToArray()
+            };
+            var result = await _storiesServices.Create(dto);
+
+            if (result != null)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index", vm);
         }
     }
 }
