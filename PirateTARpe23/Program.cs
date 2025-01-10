@@ -18,7 +18,10 @@ namespace PirateTARpe23
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IPiratesServices, PiratesServices>();
             builder.Services.AddScoped<IFileServices, FileServices>();
+            builder.Services.AddScoped<IEmailsServices, EmailsServices>();
             builder.Services.AddScoped<IAccountsServices, AccountsServices>();
+            builder.Services.AddScoped<IPlayerProfilesServices, PlayerProfilesServices>();
+
 
             builder.Services.AddDbContext<PirateTARpe23Context>
                 (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

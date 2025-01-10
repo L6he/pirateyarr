@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
+using PirateTARpe23.ApplicationServices.Services;
 using PirateTARpe23.Core.Domain;
 using PirateTARpe23.Core.Dto.AccountsDtos;
+using PirateTARpe23.Core.ServiceInterface;
 using PirateTARpe23.Data;
 using PirateTARpe23.Models.Accounts;
 using System.Reflection.Metadata.Ecma335;
@@ -17,6 +19,10 @@ namespace PirateTARpe23.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
 
         private readonly PirateTARpe23Context _context;
+
+        private readonly IEmailsServices _emailsServices;
+
+        private readonly IPlayerProfilesServices _playerProfilesServices;
 
         public AccountsController
             (

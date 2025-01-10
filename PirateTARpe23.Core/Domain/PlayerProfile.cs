@@ -19,7 +19,7 @@ namespace PirateTARpe23.Core.Domain
     {
         public Guid ID { get; set; }
 
-        public Guid ApplicationUserID { get; set; }
+        public string ApplicationUserID { get; set; }
 
         public string ScreenName { get; set; }
 
