@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using PirateTARpe23.Core.Domain;
 using PirateTARpe23.Core.ServiceInterface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PirateTARpe23.ApplicationServices.Services
 {
@@ -20,7 +15,7 @@ namespace PirateTARpe23.ApplicationServices.Services
             _accountsServices = accountsServices;
         }
 
-        public async Task<PlayerProfile> Create(Guid profileToBeCreated, string userIdFor)
+        public async Task<PlayerProfile> Create(string userIdFor)
         {
             var user = await _userManager.FindByIdAsync(userIdFor);
             string userId = user.Id;

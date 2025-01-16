@@ -227,7 +227,7 @@ namespace PirateTARpe23.Controllers
 
                     ViewBag.ErrorTitle = "Account registered successfully.";
                     ViewBag.ErrorMessage = "Please confirm your email from the link before logging in." + "\nemail sent";
-                    return View("Error");
+                    return RedirectToAction("NewProfile", "PlayerProfiles");
                 }
                 foreach (var error in result.Errors)
                 {

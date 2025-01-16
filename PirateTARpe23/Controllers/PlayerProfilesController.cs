@@ -2,7 +2,6 @@
 using PirateTARpe23.Core.Domain;
 using PirateTARpe23.Core.Dto.AccountsDtos;
 using PirateTARpe23.Data;
-using System.Data.Entity.Core.Metadata.Edm;
 
 namespace PirateTARpe23.Controllers
 {
@@ -39,14 +38,15 @@ namespace PirateTARpe23.Controllers
             var newProfile = new PlayerProfile()
             {
                 ID = dto.ID,
-                ApplicationUserID = dto.ApplicationUserID,
-                ScreenName = "",
+                ApplicationUserID = TempData["NewUserID"].ToString,
+                ScreenName = dto.ScreenName,
                 dabloons = 100,
                 epicfortnitevictoryroyales = 0,
                 CurrentStatus = ProfileStatus.Active,
                 IsAdmin = false
             };
             var result = await _context.PlayerProfiles.AddAsync(newProfile);
+            await _context.SaveChangesAsync();
             if (result != null)
             {
                 return View(Index);
