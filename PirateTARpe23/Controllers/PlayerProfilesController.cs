@@ -29,7 +29,8 @@ namespace PirateTARpe23.Controllers
         [HttpPost]
         public async Task<IActionResult> NewProfile(PlayerProfileDto dto)
         {
-            if (dto.ApplicationUserID == Guid.Empty)
+            string userid = TempData["NewUserID"].ToString();
+            if (userid == null)
             {
 
                 return View(Index);
@@ -38,11 +39,11 @@ namespace PirateTARpe23.Controllers
             var newProfile = new PlayerProfile()
             {
                 ID = dto.ID,
-                ApplicationUserID = TempData["NewUserID"].ToString,
+                ApplicationUserID = TempData["NewUserID"].ToString(),
                 ScreenName = dto.ScreenName,
                 dabloons = 100,
                 epicfortnitevictoryroyales = 0,
-                CurrentStatus = ProfileStatus.Active,
+                CurrentStatus = Core.Domain.ProfileStatus.Active,
                 IsAdmin = false
             };
             var result = await _context.PlayerProfiles.AddAsync(newProfile);

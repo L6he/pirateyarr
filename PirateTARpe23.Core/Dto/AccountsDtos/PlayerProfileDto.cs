@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PirateTARpe23.Core.Dto.AccountsDtos
 {
-    public class PlayerProfileDto
-    {
+
+
         public enum ProfileStatus
         {
             Active,
@@ -17,7 +17,7 @@ namespace PirateTARpe23.Core.Dto.AccountsDtos
             Banned,
             ManualReviewNecessary
         }
-        public class PlayerProfile
+        public class PlayerProfileDto
         {
             public Guid ID { get; set; }
 
@@ -34,4 +34,3 @@ namespace PirateTARpe23.Core.Dto.AccountsDtos
             public bool IsAdmin { get; set; }
         }
     }
-}

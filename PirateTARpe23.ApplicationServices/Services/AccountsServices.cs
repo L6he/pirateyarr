@@ -40,7 +40,7 @@ namespace PirateTARpe23.ApplicationServices.Services
                 UserName = dto.Username,
                 Email = dto.Email,
                 City = dto.City,
-                PlayerProfileID = dto.AssociatedPlayerProfile = await _playerProfilesServices.Create()
+                //PlayerProfileID = dto.AssociatedPlayerProfile = await _playerProfilesServices.Create()
             };
             var result = await _userManager.CreateAsync(user, dto.Password);
             if (result.Succeeded)

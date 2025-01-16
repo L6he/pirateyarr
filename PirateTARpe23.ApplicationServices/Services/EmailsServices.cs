@@ -1,13 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MailKit.Net.Smtp;
+using Microsoft.Extensions.Configuration;
 using MimeKit;
 using PirateTARpe23.Core.Dto;
 using PirateTARpe23.Core.ServiceInterface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PirateTARpe23.ApplicationServices.Services
 {
