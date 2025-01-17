@@ -16,5 +16,7 @@ namespace PirateTARpe23.Models.Accounts
         public bool RememberMe { get; set; }
 
         public string? ReturnURL { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }

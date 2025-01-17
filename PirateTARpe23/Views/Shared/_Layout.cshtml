@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @inject SignInManager<PirateTARpe23.Core.Domain.ApplicationUser> signInManager;
+@* @inject  *@
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            @* if ()
+                            {
+                                
+                            } *@
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Pirates" asp-action="Index">My Pirates</a>
                         </li>

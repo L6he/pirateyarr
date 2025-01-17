@@ -12,5 +12,7 @@ namespace PirateTARpe23.Core.Domain
         public string City { get; set; }
 
         public Guid PlayerProfileID { get; set; } //nigga!!!!
+
+        public bool IsAdmin { get; set; }
     }
 }

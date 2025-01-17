@@ -210,7 +210,8 @@ namespace PirateTARpe23.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    City = model.City
+                    City = model.City,
+                    IsAdmin = false
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);

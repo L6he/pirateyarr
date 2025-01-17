@@ -29,6 +29,6 @@ namespace PirateTARpe23.Core.Domain
 
         public ProfileStatus CurrentStatus { get; set; }
 
-        public bool IsAdmin { get; set; }
+        //public bool IsAdmin { get; set; }
     }
 }

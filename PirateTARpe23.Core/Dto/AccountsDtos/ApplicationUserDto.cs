@@ -17,5 +17,7 @@ namespace PirateTARpe23.Core.Dto.AccountsDtos
         public string Email { get; set; }
 
         public Guid? AssociatedPlayerProfile { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }

@@ -1,8 +1,6 @@
 ﻿namespace PirateTARpe23.Models.Profiles
 {
-    public class ProfileRegisterViewModel
-    {
-        public enum ProfileStatus
+    public enum ProfileStatus
         {
             Active,
             Abandoned,
@@ -11,8 +9,10 @@
             Banned,
             ManualReviewNecessary
         }
-        public class PlayerProfile
-        {
+    public class ProfileRegisterViewModel
+    {
+        
+        
             public Guid ID { get; set; }
 
             public string ApplicationUserID { get; set; }
@@ -28,4 +28,3 @@
             public bool IsAdmin { get; set; }
         }
     }
-}

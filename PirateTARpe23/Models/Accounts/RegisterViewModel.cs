@@ -18,5 +18,7 @@ namespace PirateTARpe23.Models.Accounts
         public string ConfirmPassword { get; set; }
 
         public string City { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }
