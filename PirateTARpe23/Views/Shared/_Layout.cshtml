@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @inject SignInManager<PirateTARpe23.Core.Domain.ApplicationUser> signInManager;
-@* @inject  *@
+@inject UserManager<PirateTARpe23.Core.Domain.ApplicationUser> userManager;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +28,14 @@
                         </li>
                         @if (signInManager.IsSignedIn(User))
                         {
-                            @* if ()
+                            var test = User.Claims.FirstOrDefault(c => c.);
+                            Guid userId = Guid.Empty;
+                            var user = await userManager.FindByIdAsync(test.ToString());
+                            bool pType = user.IsAdmin;
+                            if (pType == true)
                             {
                                 
-                            } *@
+                            }   
                         }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Pirates" asp-action="Index">My Pirates</a>

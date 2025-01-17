@@ -213,7 +213,7 @@ namespace PirateTARpe23.Controllers
                     City = model.City,
                     IsAdmin = false
                 };
-
+                TempData["NewUserID"] = user.Id;
                 var result = await _userManager.CreateAsync(user, model.Password);
                 
                 if (result.Succeeded)

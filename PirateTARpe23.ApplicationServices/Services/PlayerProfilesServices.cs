@@ -7,12 +7,10 @@ namespace PirateTARpe23.ApplicationServices.Services
     public class PlayerProfilesServices : IPlayerProfilesServices
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IAccountsServices _accountsServices;
 
-        public PlayerProfilesServices(UserManager<ApplicationUser> userManager, IAccountsServices accountsServices)
+        public PlayerProfilesServices(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            _accountsServices = accountsServices;
         }
 
         public async Task<PlayerProfile> Create(string userIdFor)
@@ -24,10 +22,10 @@ namespace PirateTARpe23.ApplicationServices.Services
                 ID = new Guid(),
                 ApplicationUserID = userId,
                 ScreenName = "",
-                dabloons = 100,
-                epicfortnitevictoryroyales = 0,
+                Dabloons = 100,
+                Epicfortnitevictoryroyales = 0,
                 CurrentStatus = ProfileStatus.Active,
-                IsAdmin = false
+                //IsAdmin = false
             };
             return profile;
             //var resultForProfile = await _playerProfilesServices.Create(profile);

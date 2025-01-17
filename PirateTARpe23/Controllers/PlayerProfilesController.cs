@@ -41,19 +41,19 @@ namespace PirateTARpe23.Controllers
                 ID = dto.ID,
                 ApplicationUserID = TempData["NewUserID"].ToString(),
                 ScreenName = dto.ScreenName,
-                dabloons = 100,
-                epicfortnitevictoryroyales = 0,
+                Dabloons = 100,
+                Epicfortnitevictoryroyales = 0,
                 CurrentStatus = Core.Domain.ProfileStatus.Active,
-                IsAdmin = false
+                //IsAdmin = false
             };
             var result = await _context.PlayerProfiles.AddAsync(newProfile);
             await _context.SaveChangesAsync();
             if (result != null)
             {
-                return View(Index);
+                return View("~/Views/Accounts/Login.cshtml");
             }
 
-            return View();
+            return View("~/Views/Home/Index.cshtml");
         }
         //[HttpGet]
         //public async Task<PlayerProfile>

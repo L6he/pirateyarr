@@ -23,9 +23,9 @@ namespace PirateTARpe23.Core.Domain
 
         public string ScreenName { get; set; }
 
-        public int dabloons { get; set; }
+        public int Dabloons { get; set; }
 
-        public int epicfortnitevictoryroyales { get; set; }
+        public int Epicfortnitevictoryroyales { get; set; }
 
         public ProfileStatus CurrentStatus { get; set; }
 

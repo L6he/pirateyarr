@@ -19,9 +19,9 @@ namespace PirateTARpe23.ApplicationServices.Services
         {
             var email = new MimeMessage();
 
-            _configuration.GetSection("EmailUserName").Value = "supermariobrosmailee";
-            _configuration.GetSection("EmailHost").Value = "smtp.gmail.com";
-            _configuration.GetSection("EmailPassword").Value = "ucgp mjrl bdbh ilyh";
+            _configuration.GetSection("EmailUserName").Value = "l6he";
+            _configuration.GetSection("EmailHost").Value = "greenday@best.com";
+            _configuration.GetSection("EmailPassword").Value = "!23aBC";
 
 
             email.From.Add(MailboxAddress.Parse(_configuration.GetSection("EmailUserName").Value));
@@ -46,9 +46,9 @@ namespace PirateTARpe23.ApplicationServices.Services
             dto.Token = token;
             var email = new MimeMessage();
 
-            _configuration.GetSection("EmailUserName").Value = "supermariobrosmailee";
-            _configuration.GetSection("EmailHost").Value = "smtp.gmail.com";
-            _configuration.GetSection("EmailPassword").Value = "ucgp mjrl bdbh ilyh";
+            _configuration.GetSection("EmailUserName").Value = "l6he";
+            _configuration.GetSection("EmailHost").Value = "greenday@best.com";
+            _configuration.GetSection("EmailPassword").Value = "!23aBC";
 
 
             email.From.Add(MailboxAddress.Parse(_configuration.GetSection("EmailUserName").Value));
