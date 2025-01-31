@@ -46,7 +46,7 @@ namespace PirateTARpe23.ApplicationServices.Services
             //set by yuusa
             pirate.PrimaryWeapon = (Core.Domain.PrimaryWeapon)dto.PrimaryWeapon;
             pirate.SecondaryWeapon = (Core.Domain.SecondaryWeapon)dto.SecondaryWeapon;
-            pirate.Item = dto.Item;
+            pirate.Item = (Core.Domain.Item)dto.Item;
 
             //fairusu
             if (dto.Files != null)
@@ -76,7 +76,7 @@ namespace PirateTARpe23.ApplicationServices.Services
             //set by yuusa
             pirate.PrimaryWeapon = (Core.Domain.PrimaryWeapon)dto.PrimaryWeapon;
             pirate.SecondaryWeapon = (Core.Domain.SecondaryWeapon)dto.SecondaryWeapon;
-            pirate.Item = dto.Item;
+            pirate.Item = (Core.Domain.Item)dto.Item;
 
             //fairusu
             if (dto.Files != null)

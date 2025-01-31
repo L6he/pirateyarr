@@ -81,7 +81,7 @@ namespace PirateTARpe23.Controllers
 
                 SecondaryWeapon = (Core.Dto.SecondaryWeapon)vm.SecondaryWeapon,
 
-                Item = vm.Item,
+                Item = (Core.Dto.Item)vm.Item,
 
                 Files = vm.Files,
 
@@ -132,7 +132,7 @@ namespace PirateTARpe23.Controllers
             vm.StatusEffect = (Models.Pirates.StatusEffect)pirate.StatusEffect;
             vm.PrimaryWeapon = (Models.Pirates.PrimaryWeapon)pirate.PrimaryWeapon;
             vm.SecondaryWeapon = (Models.Pirates.SecondaryWeapon)pirate.SecondaryWeapon;
-            vm.Item = pirate.Item;
+            vm.Item = (Models.Pirates.Item)pirate.Item;
             vm.Image.AddRange(images);
 
             return View(vm);
@@ -180,7 +180,7 @@ namespace PirateTARpe23.Controllers
 
             vm.SecondaryWeapon = (Models.Pirates.SecondaryWeapon)pirate.SecondaryWeapon;
 
-            vm.Item = pirate.Item;
+            vm.Item = (Models.Pirates.SecondaryWeapon)pirate.Item;
 
             vm.Image.AddRange(images);
 
@@ -212,7 +212,7 @@ namespace PirateTARpe23.Controllers
 
                 SecondaryWeapon = (Core.Dto.SecondaryWeapon)vm.SecondaryWeapon,
 
-                Item = vm.Item,
+                Item = vm.(Core.Dto.Item)vm.Item,
 
                 Files = vm.Files,
 
@@ -280,7 +280,7 @@ namespace PirateTARpe23.Controllers
 
             vm.SecondaryWeapon = (Models.Pirates.SecondaryWeapon)pirate.SecondaryWeapon;
 
-            vm.Item = pirate.Item;
+            vm.Item = (Models.Pirates.Item)pirate.Item;
 
             vm.Image.AddRange(images);
 
@@ -339,7 +339,7 @@ namespace PirateTARpe23.Controllers
 
                 SecondaryWeapon = (Core.Dto.SecondaryWeapon)vm.AddedPirate.SecondaryWeapon,
 
-                Item = vm.AddedPirate.Item,
+                Item = (Core.Dto.Item)vm.AddedPirate.Item,
 
                 Files = vm.AddedPirate.Files,
 

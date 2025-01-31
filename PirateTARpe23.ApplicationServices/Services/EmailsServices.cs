@@ -20,7 +20,7 @@ namespace PirateTARpe23.ApplicationServices.Services
             var email = new MimeMessage();
 
             _configuration.GetSection("EmailUserName").Value = "l6he";
-            _configuration.GetSection("EmailHost").Value = "greenday@best.com";
+            _configuration.GetSection("EmailHost").Value = "green@day.com";
             _configuration.GetSection("EmailPassword").Value = "!23aBC";
 
 
@@ -47,7 +47,7 @@ namespace PirateTARpe23.ApplicationServices.Services
             var email = new MimeMessage();
 
             _configuration.GetSection("EmailUserName").Value = "l6he";
-            _configuration.GetSection("EmailHost").Value = "greenday@best.com";
+            _configuration.GetSection("EmailHost").Value = "green@day.com";
             _configuration.GetSection("EmailPassword").Value = "!23aBC";
 
 
@@ -61,7 +61,7 @@ namespace PirateTARpe23.ApplicationServices.Services
 
             email.Body = builder.ToMessageBody();
             using var smtp = new SmtpClient();
-            //google smtp app password = GalacticTitansSMTP ucgp mjrl bdbh ilyh 
+            //google smtp app password = GalacticTitansSMTP ucgp mjrl bdbh ilyh                   what the fuck does this mean
             smtp.Connect(_configuration.GetSection("EmailHost").Value, 587, MailKit.Security.SecureSocketOptions.StartTls);
             smtp.Authenticate(_configuration.GetSection("EmailUserName").Value, _configuration.GetSection("EmailPassword").Value);
             smtp.Send(email);

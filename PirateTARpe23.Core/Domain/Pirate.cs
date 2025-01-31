@@ -21,6 +21,11 @@ namespace PirateTARpe23.Core.Domain
     {
         Dagger, Scimitar, Cutlass
     }
+    public enum Item
+    {
+        ShipsBiscuit, TheLiquid
+    }
+    //don't worry bout it sweetheart
     public class Pirate
     {
         public Guid ID { get; set; } 
@@ -31,7 +36,7 @@ namespace PirateTARpe23.Core.Domain
         public int Level { get; set; }
         public PrimaryWeapon PrimaryWeapon { get; set; }
         public SecondaryWeapon SecondaryWeapon { get; set; }
-        public string? Item { get; set; }
+        public Item Item { get; set; }
         public double HungerLevel { get; set; }
         public double ThirstLevel { get; set; }
     }

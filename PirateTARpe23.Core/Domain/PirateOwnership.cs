@@ -22,7 +22,7 @@ namespace PirateTARpe23.Core.Domain
 
         public SecondaryWeapon SecondaryWeapon { get; set; }
 
-        public string? Item { get; set; }
+        public Item Item { get; set; }
 
         public double HungerLevel { get; set; }
 
