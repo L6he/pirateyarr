@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace PirateTARpe23.Core.ServiceInterface
 {
-    public interface IFileServices
+    public interface IIslandsServices
     {
-        void UploadFilesToDb(PirateDto dto, Pirate domain);
-        void UploadFilesToDb(IslandDto dto, Island domain);
-        Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto dto);
+        Task<Island> DetailsAsync(Guid id);
+        Task<Island> Create(IslandDto dto);
+        Task<Island> Update(IslandDto dto);
+        Task<Island> Delete(Guid id);
     }
 }

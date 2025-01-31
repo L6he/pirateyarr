@@ -180,7 +180,7 @@ namespace PirateTARpe23.Controllers
 
             vm.SecondaryWeapon = (Models.Pirates.SecondaryWeapon)pirate.SecondaryWeapon;
 
-            vm.Item = (Models.Pirates.SecondaryWeapon)pirate.Item;
+            vm.Item = (Models.Pirates.Item)pirate.Item;
 
             vm.Image.AddRange(images);
 
@@ -212,7 +212,7 @@ namespace PirateTARpe23.Controllers
 
                 SecondaryWeapon = (Core.Dto.SecondaryWeapon)vm.SecondaryWeapon,
 
-                Item = vm.(Core.Dto.Item)vm.Item,
+                Item = (Core.Dto.Item)vm.Item,
 
                 Files = vm.Files,
 

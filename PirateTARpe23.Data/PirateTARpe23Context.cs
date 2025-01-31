@@ -16,6 +16,8 @@ namespace PirateTARpe23.Data
         public PirateTARpe23Context(DbContextOptions<PirateTARpe23Context> options) : base(options) { }
         public DbSet<Pirate> Pirates { get; set; }
 
+        public DbSet<Island> Islands { get; set; }
+
         public DbSet<FileToDatabase> FilesToDatabase { get; set; }
 
         public DbSet<IdentityRole> IdentityRoles { get; set; }
