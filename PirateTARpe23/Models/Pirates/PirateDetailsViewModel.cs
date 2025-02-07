@@ -7,6 +7,7 @@
         public double Health { get; set; }
         public StatusEffect StatusEffect { get; set; }
         public double XP { get; set; } //haha TitanXP that's like a gpu
+        public double XPNextLevel { get; set; }
         public int Level { get; set; }
         public PrimaryWeapon PrimaryWeapon { get; set; }
         public SecondaryWeapon SecondaryWeapon { get; set; }

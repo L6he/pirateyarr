@@ -37,7 +37,8 @@ namespace PirateTARpe23.ApplicationServices.Services
             pirate.ID = Guid.NewGuid();
             pirate.Health = 200;
             pirate.XP = 0;
-            pirate.Level = 0;
+            pirate.XPNextLevel = 1000;
+            pirate.Level = 1;
             pirate.HungerLevel = 0;
             pirate.ThirstLevel = 0;
             pirate.StatusEffect = Core.Domain.StatusEffect.Clear;

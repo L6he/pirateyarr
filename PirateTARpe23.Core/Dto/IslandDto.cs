@@ -7,10 +7,6 @@ using System.Threading.Tasks;
 
 namespace PirateTARpe23.Core.Dto
 {
-    public enum IslandSize
-    {
-        Small, Medium, Large
-    }
     public enum IslandStatus
     {
         FullOfLoot, Plundered
@@ -21,13 +17,13 @@ namespace PirateTARpe23.Core.Dto
 
         public string IslandName { get; set; }
 
-        public IslandSize IslandSize { get; set; }
+        public bool IsBigIsland { get; set; }
 
         public IslandStatus IslandStatus { get; set; }
 
         public int LevelRequirement { get; set; }
 
-        public int XPReward { get; set; }
+        public double XPReward { get; set; }
 
         public List<IFormFile> Files { get; set; }
         public IEnumerable<FileToDatabaseDto> Image { get; set; } = new List<FileToDatabaseDto>();

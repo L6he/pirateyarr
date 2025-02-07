@@ -45,7 +45,9 @@ namespace PirateTARpe23.Controllers
 
                     Level = x.Level,
 
-                    XP = x.XP
+                    XP = x.XP,
+
+                    XPNextLevel = x.XPNextLevel,
                 }
                 );
             return View(result);
@@ -74,6 +76,8 @@ namespace PirateTARpe23.Controllers
                 Level = 0,
 
                 XP = 0,
+
+                XPNextLevel = 1000,
 
                 StatusEffect = (Core.Dto.StatusEffect)vm.StatusEffect,
 
@@ -126,6 +130,7 @@ namespace PirateTARpe23.Controllers
             vm.Name = pirate.Name;
             vm.Health = pirate.Health;
             vm.XP = pirate.XP;
+            vm.XPNextLevel = pirate.XPNextLevel;
             vm.Level = pirate.Level;
             vm.HungerLevel = pirate.HungerLevel;
             vm.ThirstLevel = pirate.ThirstLevel;
@@ -168,6 +173,8 @@ namespace PirateTARpe23.Controllers
 
             vm.XP = pirate.XP;
 
+            vm.XPNextLevel = pirate.XPNextLevel;
+
             vm.Level = pirate.Level;
 
             vm.HungerLevel = pirate.HungerLevel;
@@ -205,6 +212,8 @@ namespace PirateTARpe23.Controllers
                 Level = 0,
 
                 XP = 0,
+
+                XPNextLevel = 1000,
 
                 StatusEffect = (Core.Dto.StatusEffect)vm.StatusEffect,
 
@@ -267,6 +276,8 @@ namespace PirateTARpe23.Controllers
             vm.Health = pirate.Health;
 
             vm.XP = pirate.XP;
+
+            vm.XPNextLevel = pirate.XPNextLevel;
 
             vm.Level = pirate.Level;
 
@@ -332,6 +343,8 @@ namespace PirateTARpe23.Controllers
                 Level = 0,
 
                 XP = 0,
+
+                XPNextLevel = 1000,
 
                 StatusEffect = (Core.Dto.StatusEffect)vm.AddedPirate.StatusEffect,
 

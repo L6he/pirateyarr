@@ -16,6 +16,8 @@ namespace PirateTARpe23.Core.Domain
 
         public double XP { get; set; }
 
+        public double XPNextLevel { get; set; }
+
         public int Level { get; set; }
 
         public PrimaryWeapon PrimaryWeapon { get; set; }

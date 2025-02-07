@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IslandSize = PirateTARpe23.Core.Domain.IslandSize;
 
 namespace PirateTARpe23.ApplicationServices.Services
 {
@@ -33,9 +32,20 @@ namespace PirateTARpe23.ApplicationServices.Services
         public async Task<Island> Create(IslandDto dto)
         {
             Random rand = new();
-            int size = rand.Next(0, 3);
+            int size = rand.Next(0,1);
+            bool bigness = Convert.ToBoolean(size);
             Island island = new();
-            Island islandSize = size.ToEnum(typeof(IslandSize));
+
+            island.IslandID = Guid.NewGuid();
+            island.IslandName = dto.IslandName;
+            island.IsBigIsland = bigness;
+            island.IslandStatus = (Core.Domain.IslandStatus)dto.IslandStatus;
+            island.LevelRequirement = 10;
+            switch (bigness)
+            {
+                case false: island.XPReward = 500; break;
+                case true: island.XPReward = 1000; break;
+            }
 
             //fairusu
             if (dto.Files != null)
@@ -51,17 +61,20 @@ namespace PirateTARpe23.ApplicationServices.Services
 
         public async Task<Island> Update(IslandDto dto)
         {
-            Random rand = new();
-            int size = rand.Next(0, 3);
             Island island = new();
-            //Island islandSize = size.ToEnum(typeof(IslandSize));
+
+            island.IslandID = dto.IslandID;
+            island.IslandName = dto.IslandName;
+            island.IsBigIsland = dto.IsBigIsland;
+            island.IslandStatus = (Core.Domain.IslandStatus)dto.IslandStatus;
+            island.LevelRequirement = dto.LevelRequirement;
 
             //fairusu
             if (dto.Files != null)
             {
                 _fileServices.UploadFilesToDb(dto, island);
             }
-            //_context.Pirates.Update(island);
+            _context.Islands.Update(island);
             await _context.SaveChangesAsync();
 
             return island;

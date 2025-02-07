@@ -2,9 +2,9 @@
 
 namespace PirateTARpe23.Models.Islands
 {
-    public enum IslandSize
+    public enum IslandStatus
     {
-        Small, Medium, Large
+        FullOfLoot, Plundered
     }
     public class IslandIndexViewModel
     {
@@ -12,12 +12,12 @@ namespace PirateTARpe23.Models.Islands
 
         public string IslandName { get; set; }
 
-        public IslandSize IslandSize { get; set; }
+        public bool IsBigIsland { get; set; }
 
         public IslandStatus IslandStatus { get; set; }
 
         public int LevelRequirement { get; set; }
 
-        public int XPReward { get; set; }
+        public double XPReward { get; set; }
     }
 }
