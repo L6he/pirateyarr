@@ -17,7 +17,5 @@ namespace PirateTARpe23.Models.Islands
         public int LevelRequirement { get; set; }
 
         public int XPReward { get; set; }
-
-        public List<IFormFile> Files { get; set; }
     }
 }

@@ -1,0 +1,28 @@
+﻿@model PirateTARpe23.Models.Islands.IslandCreateViewModel
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="form-group-row">
+            <label asp-for="IslandName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="IslandName" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group-row">
+            <label asp-for="LevelRequirement" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="LevelRequirement" class="form-control" />
+            </div>
+        </div>
+
+        @{
+            var breakpoint = "";
+        }
+        <input asp-action="Create" asp-controller="Islands" type="submit"
+               class="btn btn-outline-secondary" value="Cool button you should click">
+        <a asp-action="index" class="btn btn-danger">Other cool button you should definitely click</a>
+
+    </form>
+</div>

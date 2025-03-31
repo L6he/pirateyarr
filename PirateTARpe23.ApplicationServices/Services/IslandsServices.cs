@@ -40,7 +40,7 @@ namespace PirateTARpe23.ApplicationServices.Services
             island.IslandName = dto.IslandName;
             island.IsBigIsland = bigness;
             island.IslandStatus = Core.Domain.IslandStatus.FullOfLoot;
-            island.LevelRequirement = 10;
+            island.LevelRequirement = dto.LevelRequirement; //make it the same as below bitch
             switch (bigness)
             {
                 case false: island.XPReward = 500; break;
@@ -61,7 +61,7 @@ namespace PirateTARpe23.ApplicationServices.Services
             island.IslandName = dto.IslandName;
             island.IsBigIsland = dto.IsBigIsland;
             island.IslandStatus = Core.Domain.IslandStatus.FullOfLoot;
-            island.LevelRequirement = 10;
+            island.LevelRequirement = ;
 
             _context.Islands.Update(island);
             await _context.SaveChangesAsync();

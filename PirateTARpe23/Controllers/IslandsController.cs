@@ -7,6 +7,8 @@ using PirateTARpe23.Models.Islands;
 using PirateTARpe23.Models;
 using PirateTARpe23.Models.Pirates;
 using PirateTARpe23.Core.Domain;
+using Microsoft.EntityFrameworkCore;
+using PirateTARpe23.Models.Stories;
 
 namespace PirateTARpe23.Controllers
 {
@@ -14,7 +16,7 @@ namespace PirateTARpe23.Controllers
     {
         private readonly PirateTARpe23Context _context;
         private readonly IIslandsServices _islandsServices;
-        public IslandsController(PirateTARpe23Context context, IIslandsServices islandsServices, IFileServices fileServices)
+        public IslandsController(PirateTARpe23Context context, IIslandsServices islandsServices)
         {
             _context = context;
             _islandsServices = islandsServices;
@@ -52,14 +54,12 @@ namespace PirateTARpe23.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IslandCreateViewModel vm)
         {
-            Random random = new();
-            bool value = random.Next(2) == 1;
             var dto = new IslandDto()
             {
                 IslandName = vm.IslandName,
-                IsBigIsland = value,
+                IsBigIsland = vm.IsBigIsland,
                 IslandStatus = (Core.Dto.IslandStatus)vm.IslandStatus,
-                LevelRequirement = 5,
+                LevelRequirement = vm.LevelRequirement,
                 XPReward = vm.XPReward,
             };
             var result = await _islandsServices.Create(dto);
@@ -79,10 +79,10 @@ namespace PirateTARpe23.Controllers
                 return NotFound(); // Custom partial view
             }
             var vm = new IslandDetailsViewModel();
-            vm.ID = island.IslandID;
+            vm.IslandID = island.IslandID;
             vm.IslandName = island.IslandName;
             vm.IsBigIsland = island.IsBigIsland;
-            vm.IslandStatus = island.IslandStatus;
+            vm.IslandStatus = (Models.Islands.IslandStatus)island.IslandStatus;
             vm.LevelRequirement = island.LevelRequirement;
             vm.XPReward = island.XPReward;
             return View(vm);
@@ -105,7 +105,7 @@ namespace PirateTARpe23.Controllers
 
             vm.IsBigIsland = island.IsBigIsland;
             vm.IslandStatus = Models.Islands.IslandStatus.FullOfLoot;
-            vm.LevelRequirement = 10; 
+            vm.LevelRequirement = vm.LevelRequirement; 
             vm.XPReward = (int)island.XPReward; //change
 
             return View("Update", vm);
@@ -121,14 +121,48 @@ namespace PirateTARpe23.Controllers
                 IslandName = vm.IslandName,
                 IsBigIsland = vm.IsBigIsland,
 
-                IslandStatus = Core.Dto.IslandStatus.FullOfLoot,
-                LevelRequirement = 10,
-                XPReward = vm.XPReward, //change maybe?
+                IslandStatus = (Core.Dto.IslandStatus)vm.IslandStatus,
+                LevelRequirement = vm.LevelRequirement,
+                XPReward = vm.XPReward,
             };
             var result = await _islandsServices.Update(dto);
 
             if (result == null) { return RedirectToAction("Index"); }
             return RedirectToAction("Index", vm);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (id == null) { return NotFound(); }
+
+            var island = await _islandsServices.DetailsAsync(id);
+
+            if (island == null) { NotFound(); }
+
+            var vm = new IslandDeleteViewModel();
+
+            vm.IslandID = island.IslandID;
+
+            vm.IslandName = island.IslandName;
+
+            vm.IsBigIsland = island.IsBigIsland;
+            vm.IslandStatus = (Models.Islands.IslandStatus)island.IslandStatus;
+            vm.LevelRequirement = island.LevelRequirement;
+
+            vm.XPReward = island.XPReward;
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmation(Guid id)
+        {
+            var islandToDelete = await _islandsServices.Delete(id);
+
+            if (islandToDelete == null) { return RedirectToAction("Index"); }
+
+            return RedirectToAction("Index");
         }
     }
 }
