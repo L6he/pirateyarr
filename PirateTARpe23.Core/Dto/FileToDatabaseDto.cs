@@ -15,6 +15,5 @@ namespace PirateTARpe23.Core.Dto
         public byte[] ImageData { get; set; }
 
         public Guid? PirateID { get; set; }
-        public Guid? IslandID { get; set; }
     }
 }

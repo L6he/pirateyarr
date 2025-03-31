@@ -19,8 +19,5 @@ namespace PirateTARpe23.Models.Islands
         public int XPReward { get; set; }
 
         public List<IFormFile> Files { get; set; }
-
-        public IEnumerable<FileToDatabaseDto> Image { get; set; } = new List<FileToDatabaseDto>();
-
     }
 }

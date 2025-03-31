@@ -5,6 +5,8 @@ using PirateTARpe23.Core.ServiceInterface;
 using PirateTARpe23.Data;
 using PirateTARpe23.Models.Islands;
 using PirateTARpe23.Models;
+using PirateTARpe23.Models.Pirates;
+using PirateTARpe23.Core.Domain;
 
 namespace PirateTARpe23.Controllers
 {
@@ -12,12 +14,10 @@ namespace PirateTARpe23.Controllers
     {
         private readonly PirateTARpe23Context _context;
         private readonly IIslandsServices _islandsServices;
-        private readonly IFileServices _fileServices;
         public IslandsController(PirateTARpe23Context context, IIslandsServices islandsServices, IFileServices fileServices)
         {
             _context = context;
             _islandsServices = islandsServices;
-            _fileServices = fileServices;
         }
 
         [HttpGet]
@@ -52,23 +52,82 @@ namespace PirateTARpe23.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IslandCreateViewModel vm)
         {
+            Random random = new();
+            bool value = random.Next(2) == 1;
             var dto = new IslandDto()
             {
                 IslandName = vm.IslandName,
-                IsBigIsland = vm.IsBigIsland,
+                IsBigIsland = value,
                 IslandStatus = (Core.Dto.IslandStatus)vm.IslandStatus,
-                LevelRequirement = vm.LevelRequirement,
+                LevelRequirement = 5,
                 XPReward = vm.XPReward,
-                Files = vm.Files,
-                Image = vm.Image.Select(
-                    x => new FileToDatabaseDto { ID = x.ID, ImageTitle = x.ImageTitle, ImageData = x.ImageData, IslandID = x.IslandID }
-                    )
             };
             var result = await _islandsServices.Create(dto);
             if (result == null)
             {
                 return RedirectToAction("Index");
             }
+            return RedirectToAction("Index", vm);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid Id)
+        {
+            var island = await _islandsServices.DetailsAsync(Id);
+            if (island == null)
+            {
+                return NotFound(); // Custom partial view
+            }
+            var vm = new IslandDetailsViewModel();
+            vm.ID = island.IslandID;
+            vm.IslandName = island.IslandName;
+            vm.IsBigIsland = island.IsBigIsland;
+            vm.IslandStatus = island.IslandStatus;
+            vm.LevelRequirement = island.LevelRequirement;
+            vm.XPReward = island.XPReward;
+            return View(vm);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            if (id == null) { return NotFound(); }
+
+            var island = await _islandsServices.DetailsAsync(id);
+
+            if (island == null) { return NotFound(); }
+
+            var vm = new IslandCreateViewModel();
+
+            vm.IslandID = island.IslandID;
+
+            vm.IslandName = island.IslandName;
+
+            vm.IsBigIsland = island.IsBigIsland;
+            vm.IslandStatus = Models.Islands.IslandStatus.FullOfLoot;
+            vm.LevelRequirement = 10; 
+            vm.XPReward = (int)island.XPReward; //change
+
+            return View("Update", vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(IslandCreateViewModel vm)
+        {
+            var dto = new IslandDto()
+            {
+                IslandID = (Guid)vm.IslandID,
+
+                IslandName = vm.IslandName,
+                IsBigIsland = vm.IsBigIsland,
+
+                IslandStatus = Core.Dto.IslandStatus.FullOfLoot,
+                LevelRequirement = 10,
+                XPReward = vm.XPReward, //change maybe?
+            };
+            var result = await _islandsServices.Update(dto);
+
+            if (result == null) { return RedirectToAction("Index"); }
             return RedirectToAction("Index", vm);
         }
     }

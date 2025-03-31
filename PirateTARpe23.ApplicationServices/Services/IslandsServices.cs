@@ -39,18 +39,12 @@ namespace PirateTARpe23.ApplicationServices.Services
             island.IslandID = Guid.NewGuid();
             island.IslandName = dto.IslandName;
             island.IsBigIsland = bigness;
-            island.IslandStatus = (Core.Domain.IslandStatus)dto.IslandStatus;
+            island.IslandStatus = Core.Domain.IslandStatus.FullOfLoot;
             island.LevelRequirement = 10;
             switch (bigness)
             {
                 case false: island.XPReward = 500; break;
                 case true: island.XPReward = 1000; break;
-            }
-
-            //fairusu
-            if (dto.Files != null)
-            {
-                _fileServices.UploadFilesToDb(dto, island);
             }
 
             await _context.Islands.AddAsync(island);
@@ -66,14 +60,9 @@ namespace PirateTARpe23.ApplicationServices.Services
             island.IslandID = dto.IslandID;
             island.IslandName = dto.IslandName;
             island.IsBigIsland = dto.IsBigIsland;
-            island.IslandStatus = (Core.Domain.IslandStatus)dto.IslandStatus;
-            island.LevelRequirement = dto.LevelRequirement;
+            island.IslandStatus = Core.Domain.IslandStatus.FullOfLoot;
+            island.LevelRequirement = 10;
 
-            //fairusu
-            if (dto.Files != null)
-            {
-                _fileServices.UploadFilesToDb(dto, island);
-            }
             _context.Islands.Update(island);
             await _context.SaveChangesAsync();
 

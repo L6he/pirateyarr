@@ -24,8 +24,5 @@ namespace PirateTARpe23.Core.Dto
         public int LevelRequirement { get; set; }
 
         public double XPReward { get; set; }
-
-        public List<IFormFile> Files { get; set; }
-        public IEnumerable<FileToDatabaseDto> Image { get; set; } = new List<FileToDatabaseDto>();
     }
 }
