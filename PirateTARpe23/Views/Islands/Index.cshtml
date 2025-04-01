@@ -51,6 +51,8 @@
                         <td>@island.XPReward</td>
 
                         <td>
+                            <a asp-action="Details" asp-controller="Islands" asp-route-id="@island.IslandID" class="btn btn-info">Details</a>
+                            <br />
                             <a asp-action="Update" asp-controller="Islands" asp-route-id="@island.IslandID" class="btn btn-info">Configure</a>
                             <br />
                             <a asp-action="Delete" asp-controller="Islands" asp-route-id="@island.IslandID" class="btn btn-info">Delete</a>
