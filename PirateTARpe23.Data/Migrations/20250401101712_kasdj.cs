@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PirateTARpe23.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class yarrharr : Migration
+    public partial class kasdj : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,7 +76,7 @@ namespace PirateTARpe23.Data.Migrations
                     IsBigIsland = table.Column<bool>(type: "bit", nullable: false),
                     IslandStatus = table.Column<int>(type: "int", nullable: false),
                     LevelRequirement = table.Column<int>(type: "int", nullable: false),
-                    XPReward = table.Column<double>(type: "float", nullable: false)
+                    XPReward = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

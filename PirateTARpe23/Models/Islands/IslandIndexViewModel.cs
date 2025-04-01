@@ -4,7 +4,7 @@ namespace PirateTARpe23.Models.Islands
 {
     public enum IslandStatus
     {
-        FullOfLoot, Plundered
+        Unplundered, Plundered
     }
     public class IslandIndexViewModel
     {
@@ -18,6 +18,6 @@ namespace PirateTARpe23.Models.Islands
 
         public int LevelRequirement { get; set; }
 
-        public double XPReward { get; set; }
+        public int XPReward { get; set; }
     }
 }

@@ -1,0 +1,61 @@
+﻿@model PirateTARpe23.Models.Islands.IslandCreateViewModel
+
+<div>
+    <form method="post" asp-action="Update" enctype="multipart/form-data">
+        <input type="hidden" asp-for="IslandID" />
+        <input type="hidden" asp-for="IslandStatus" />
+        <input type="hidden" asp-for="LevelRequirement" />
+        <input type="hidden" asp-for="XPReward" />
+        <input type="hidden" asp-for="IsBigIsland" />
+        <div class="form-group-row">
+            <label class="col-sm-2 col-form-label">Change this damned island's name</label>
+            <div class="col-sm-10">
+                <input asp-for="IslandName" class="form-control" />
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="form-group row">
+            <label asp-for="IslandID" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.IslandID)
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="IsBigIsland" class="col-sm-2 col-form-label"></label>
+            @{
+                if (Model.IsBigIsland == true)
+                {
+                    @:Big Island
+                }
+                else
+                {
+                    @:Smol Island
+                }
+            }
+
+        </div>
+        <div class="form-group row">
+            <label asp-for="IslandStatus" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.IslandStatus)
+        </div>
+        <div class="form-group row">
+            <label asp-for="LevelRequirement" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.LevelRequirement)
+        </div>
+        <div class="form-group row">
+            <label asp-for="XPReward" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.XPReward)
+        </div>
+
+        @{
+            var breakpoint = "";
+        }
+        <br />
+        <input asp-action="Update" asp-controller="Islands" type="submit" asp-route-id="@Model.IslandID"
+               class="btn btn-outline-secondary" value="Heck yes!">
+        <a asp-action="index" class="btn btn-danger">nope.avi</a>
+
+    </form>
+</div>

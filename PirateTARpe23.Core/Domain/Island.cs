@@ -11,7 +11,8 @@ namespace PirateTARpe23.Core.Domain
 {
     public enum IslandStatus
     {
-        FullOfLoot, Plundered
+        Unplundered, 
+        Plundered
     }
     public class Island
     {
@@ -26,6 +27,6 @@ namespace PirateTARpe23.Core.Domain
 
         public int LevelRequirement { get; set; }
 
-        public double XPReward { get; set; }
+        public int XPReward { get; set; }
     }
 }

@@ -29,15 +29,14 @@ namespace PirateTARpe23.ApplicationServices.Services
 
         public async Task<Island> Create(IslandDto dto)
         {
-            Random rand = new();
-            int size = rand.Next(0,1);
-            bool bigness = Convert.ToBoolean(size);
             Island island = new();
-
+            Random rand = new();
+            int size = rand.Next(2);
+            bool bigness = Convert.ToBoolean(size);
             island.IslandID = Guid.NewGuid();
             island.IslandName = dto.IslandName;
             island.IsBigIsland = bigness;
-            island.IslandStatus = Core.Domain.IslandStatus.FullOfLoot;
+            island.IslandStatus = Core.Domain.IslandStatus.Unplundered;
             switch (bigness)
             {
                 case false: island.XPReward = 500; island.LevelRequirement = 5; break;
@@ -59,6 +58,7 @@ namespace PirateTARpe23.ApplicationServices.Services
             island.IsBigIsland = dto.IsBigIsland;
             island.IslandStatus = (Core.Domain.IslandStatus)dto.IslandStatus;
             island.LevelRequirement = dto.LevelRequirement;
+            island.XPReward = dto.XPReward;
 
             _context.Islands.Update(island);
             await _context.SaveChangesAsync();

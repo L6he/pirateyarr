@@ -270,8 +270,8 @@ namespace PirateTARpe23.Data.Migrations
                     b.Property<int>("LevelRequirement")
                         .HasColumnType("int");
 
-                    b.Property<double>("XPReward")
-                        .HasColumnType("float");
+                    b.Property<int>("XPReward")
+                        .HasColumnType("int");
 
                     b.HasKey("IslandID");
 

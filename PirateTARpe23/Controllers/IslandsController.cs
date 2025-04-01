@@ -114,17 +114,26 @@ namespace PirateTARpe23.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(IslandCreateViewModel vm)
         {
-            var dto = new IslandDto()
-            {
-                IslandID = (Guid)vm.IslandID,
+            //var dto = new IslandDto()
+            //{
+            //    IslandID = (Guid)vm.IslandID,
 
-                IslandName = vm.IslandName,
-                IsBigIsland = vm.IsBigIsland,
+            //    IslandName = vm.IslandName,
+            //    IsBigIsland = vm.IsBigIsland,
 
-                IslandStatus = (Core.Dto.IslandStatus)vm.IslandStatus,
-                LevelRequirement = vm.LevelRequirement,
-                XPReward = vm.XPReward,
-            };
+            //    IslandStatus = (Core.Dto.IslandStatus)vm.IslandStatus,
+            //    LevelRequirement = vm.LevelRequirement,
+            //    XPReward = vm.XPReward,
+            //};
+            var dto = new IslandDto();
+            dto.IslandID = (Guid)vm.IslandID;
+
+            dto.IslandName = vm.IslandName;
+            dto.IsBigIsland = vm.IsBigIsland;
+            dto.IslandStatus = (Core.Dto.IslandStatus)vm.IslandStatus;
+            dto.LevelRequirement = vm.LevelRequirement;
+            dto.XPReward = vm.XPReward;
+            
             var result = await _islandsServices.Update(dto);
 
             if (result == null) { return RedirectToAction("Index"); }

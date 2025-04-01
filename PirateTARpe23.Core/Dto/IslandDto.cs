@@ -9,7 +9,7 @@ namespace PirateTARpe23.Core.Dto
 {
     public enum IslandStatus
     {
-        FullOfLoot, Plundered
+        Unplundered, Plundered
     }
     public class IslandDto
     {
@@ -23,6 +23,6 @@ namespace PirateTARpe23.Core.Dto
 
         public int LevelRequirement { get; set; }
 
-        public double XPReward { get; set; }
+        public int XPReward { get; set; }
     }
 }

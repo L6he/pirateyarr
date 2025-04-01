@@ -12,8 +12,8 @@ using PirateTARpe23.Data;
 namespace PirateTARpe23.Data.Migrations
 {
     [DbContext(typeof(PirateTARpe23Context))]
-    [Migration("20250401073151_yarrharr")]
-    partial class yarrharr
+    [Migration("20250401101712_kasdj")]
+    partial class kasdj
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -273,8 +273,8 @@ namespace PirateTARpe23.Data.Migrations
                     b.Property<int>("LevelRequirement")
                         .HasColumnType("int");
 
-                    b.Property<double>("XPReward")
-                        .HasColumnType("float");
+                    b.Property<int>("XPReward")
+                        .HasColumnType("int");
 
                     b.HasKey("IslandID");
 
