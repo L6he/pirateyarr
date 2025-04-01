@@ -104,8 +104,8 @@ namespace PirateTARpe23.Controllers
             vm.IslandName = island.IslandName;
 
             vm.IsBigIsland = island.IsBigIsland;
-            vm.IslandStatus = Models.Islands.IslandStatus.FullOfLoot;
-            vm.LevelRequirement = vm.LevelRequirement; 
+            vm.IslandStatus = (Models.Islands.IslandStatus)island.IslandStatus;
+            vm.LevelRequirement = island.LevelRequirement; 
             vm.XPReward = (int)island.XPReward; //change
 
             return View("Update", vm);

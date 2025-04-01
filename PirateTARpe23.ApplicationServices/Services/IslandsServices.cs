@@ -14,12 +14,10 @@ namespace PirateTARpe23.ApplicationServices.Services
     public class IslandsServices : IIslandsServices
     {
         private readonly PirateTARpe23Context _context;
-        private readonly IFileServices _fileServices;
 
-        public IslandsServices(PirateTARpe23Context context, IFileServices fileServices)
+        public IslandsServices(PirateTARpe23Context context)
         {
             _context = context;
-            _fileServices = fileServices;
         }
 
         public async Task<Island> DetailsAsync(Guid id)
@@ -40,11 +38,10 @@ namespace PirateTARpe23.ApplicationServices.Services
             island.IslandName = dto.IslandName;
             island.IsBigIsland = bigness;
             island.IslandStatus = Core.Domain.IslandStatus.FullOfLoot;
-            island.LevelRequirement = dto.LevelRequirement; //make it the same as below bitch
             switch (bigness)
             {
-                case false: island.XPReward = 500; break;
-                case true: island.XPReward = 1000; break;
+                case false: island.XPReward = 500; island.LevelRequirement = 5; break;
+                case true: island.XPReward = 1000; island.LevelRequirement = 10; break;
             }
 
             await _context.Islands.AddAsync(island);
@@ -60,8 +57,8 @@ namespace PirateTARpe23.ApplicationServices.Services
             island.IslandID = dto.IslandID;
             island.IslandName = dto.IslandName;
             island.IsBigIsland = dto.IsBigIsland;
-            island.IslandStatus = Core.Domain.IslandStatus.FullOfLoot;
-            island.LevelRequirement = ;
+            island.IslandStatus = (Core.Domain.IslandStatus)dto.IslandStatus;
+            island.LevelRequirement = dto.LevelRequirement;
 
             _context.Islands.Update(island);
             await _context.SaveChangesAsync();

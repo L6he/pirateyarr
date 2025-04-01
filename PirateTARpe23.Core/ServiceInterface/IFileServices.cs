@@ -11,7 +11,6 @@ namespace PirateTARpe23.Core.ServiceInterface
     public interface IFileServices
     {
         void UploadFilesToDb(PirateDto dto, Pirate domain);
-        void UploadFilesToDb(IslandDto dto, Island domain);
         Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto dto);
     }
 }

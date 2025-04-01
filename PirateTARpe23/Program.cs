@@ -17,6 +17,7 @@ namespace PirateTARpe23
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IPiratesServices, PiratesServices>();
+            builder.Services.AddScoped<IIslandsServices, IslandsServices>();
             builder.Services.AddScoped<IFileServices, FileServices>();
             builder.Services.AddScoped<IEmailsServices, EmailsServices>();
             builder.Services.AddScoped<IAccountsServices, AccountsServices>();

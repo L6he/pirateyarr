@@ -43,27 +43,6 @@ namespace PirateTARpe23.ApplicationServices.Services
                 }
             }
         }
-        public void UploadFilesToDb(IslandDto dto, Island domain)
-        {
-            if (dto.Files != null && dto.Files.Count > 0) 
-            {
-                foreach (var image in dto.Files)
-                {
-                    using (var target = new MemoryStream())
-                    {
-                        FileToDatabase files = new()
-                        {
-                            ID = Guid.NewGuid(),
-                            ImageTitle = image.FileName,
-                            IslandID = domain.IslandID
-                        };
-                        image.CopyTo(target);
-                        files.ImageData = target.ToArray();
-                        _context.FilesToDatabase.Add(files);
-                    }
-                }
-            }
-        }
 
         public async Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto dto)
         {

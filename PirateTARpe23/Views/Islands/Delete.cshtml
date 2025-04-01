@@ -1,0 +1,50 @@
+﻿@model PirateTARpe23.Models.Islands.IslandDeleteViewModel
+
+<h1>@Html.DisplayFor(model => model.IslandName)</h1>
+
+<div>
+    <h4>Island details</h4>
+    <hr />
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="IslandID" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.IslandID)
+        </div>
+        <div class="form-group row">
+            <label asp-for="IslandName" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.IslandName)
+        </div>
+        <div class="form-group row">
+            <label asp-for="IsBigIsland" class="col-sm-2 col-form-label"></label>
+            @{
+                if (Model.IsBigIsland == true)
+                {
+                    @:Big Island
+                }
+                else
+                {
+                    @:Smol Island
+                }
+            }
+            
+        </div>
+        <div class="form-group row">
+            <label asp-for="IslandStatus" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.IslandStatus)
+        </div>
+        <div class="form-group row">
+            <label asp-for="LevelRequirement" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.LevelRequirement)
+        </div>
+        <div class="form-group row">
+            <label asp-for="XPReward" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.XPReward)
+        </div>
+    </dl>
+
+    <form asp-action="DeleteConfirmation" asp-route-id="@Model.IslandID">
+        <input type="hidden" asp-for="IslandID" />
+        <input type="submit" value="Delete this island" class="btn btn-danger" />
+        <a asp-action="Index" asp-controller="Islands" class="btn btn-secondary">Index</a>
+    </form>
+</div>
